@@ -14,7 +14,7 @@ const schema = new mongoose.Schema(
       type: String,
       unique: [true, "Email already Exist"],
       required: [true, "Please enter Email"],
-      validate:
+      //   validate:
     },
     photo: {
       type: String,
