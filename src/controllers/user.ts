@@ -16,7 +16,7 @@ export const newUser = async (
       photo,
       gender,
       _id,
-      dob,
+      dob: new Date(dob),
     });
 
     return res.status(200).json({
