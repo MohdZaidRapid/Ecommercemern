@@ -2,5 +2,5 @@ import express from "express";
 const port = 4000;
 const app = express();
 app.listen(port, () => {
-    console.log(`Server is working on localhost: ${port}`);
+    console.log(`Express is working on localhost : ${port}`);
 });
