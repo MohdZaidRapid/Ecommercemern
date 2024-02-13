@@ -13,5 +13,8 @@ export const adminOnly = TryCatch(async (req, res, next) => {
   const user = await User.findById(id);
   if (!user) return next(new ErrorHandler("ID does not exist", 401));
 
-  
+  if (user.role !== "admin") {
+    return next(new ErrorHandler("only admin is authorized ", 401));
+  }
+  next();
 });
