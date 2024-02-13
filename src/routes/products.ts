@@ -5,6 +5,8 @@ import { newProduct } from "../controllers/product.js";
 import { singleUpload } from "../middlewares/multer.js";
 const app = express.Router();
 
-app.post("/new", singleUpload, newProduct);
+app.post("/new", adminOnly, singleUpload, newProduct);
+
+app.get("/latest")
 
 export default app;
