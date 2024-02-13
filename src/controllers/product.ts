@@ -3,6 +3,7 @@ import { TryCatch } from "../middlewares/error.js";
 import { NewProductRequestBody } from "../types/types.js";
 import { Product } from "../models/products.js";
 import ErrorHandler from "../utils/utility-class.js";
+import { rm } from "fs";
 
 export const newProduct = TryCatch(
   async (
@@ -15,14 +16,19 @@ export const newProduct = TryCatch(
     const photo = req.file;
     if (!photo) return next(new ErrorHandler("Please Add Photo ", 400));
 
-    if (!name || !price || !stock || !category)
+    if (!name || !price || !stock || !category) {
+      rm(photo.path, () => {
+        console.log("Deleted");
+      });
       return next(new ErrorHandler("Please enter All Fields", 400));
+    }
+
     await Product.create({
       name,
       price,
       stock,
       category: category.toLowerCase(),
-      photo: photo?.path,
+      photo: photo.path,
     });
     return res
       .status(201)
