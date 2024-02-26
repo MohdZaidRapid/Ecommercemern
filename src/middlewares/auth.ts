@@ -5,7 +5,7 @@ import { TryCatch } from "./error.js";
 // middleware to make sure only admin is allowed
 export const adminOnly = TryCatch(async (req, res, next) => {
   const { id } = req.query;
-
+  //github
   if (!id) {
     return next(new ErrorHandler("Please login ", 401));
   }
